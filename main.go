@@ -61,6 +61,9 @@ func main() {
 	// ################################################################################
 	logger.Init("Loading database...")
 	logFilePath := logger.GetLogFilePath()
+	if err := os.MkdirAll("logs", 0755); err != nil {
+		log.Fatalf("failed to create logs directory: %v", err)
+	}
 	logFile, err := os.OpenFile(logFilePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("Failed to open log file: %v", err)
